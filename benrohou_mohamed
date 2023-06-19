@@ -1,0 +1,39 @@
+# Fonction qui le checksum
+def calculer_checksum(identifiants_boites):
+    # Initialisation des compteurs
+    compteur_deux = 0
+    compteur_trois = 0
+
+    # Parcourir chaque identifiant de boîte
+    for identifiant in identifiants_boites:
+        # Compter le nombre d'occurrences de chaque lettre dans un dictionnaire
+        compteur_lettres = {}
+        for lettre in identifiant:
+            if lettre in compteur_lettres:
+                compteur_lettres[lettre] = compteur_lettres[lettre] + 1
+            else:
+                compteur_lettres[lettre] = 1
+
+        # Vérifier si l'un des caractères a une occurrence de 2 et un autre a une occurrence de 3
+        if 2 in compteur_lettres.values():
+            compteur_deux = compteur_deux + 1
+        if 3 in compteur_lettres.values():
+            compteur_trois = compteur_trois + 1
+
+    # Calculer le produit des compteurs pour obtenir la somme de contrôle
+    somme_controle = compteur_deux * compteur_trois
+    return somme_controle
+
+# Exemple d'utilisation
+identifiants_boites = [
+    "abcdef",
+    "bababc",
+    "abbcde",
+    "abcccd",
+    "aabcdd",
+    "abcdee",
+    "ababab"
+]
+
+resultat = calculer_checksum(identifiants_boites)
+print("La somme de contrôle est :", resultat)
